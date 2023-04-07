@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button, FormControl, Input, Pressable, VStack } from "native-base";
+import { Button, FormControl, Input, VStack } from "native-base";
 import { store } from "../redux/store";
 import { setUsers } from "../redux/slices/RecipeSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
+import uuid from "react-native-uuid";
 
-const AddNewRecipe = () => {
+const AddNewRecipe = ({ navigation }) => {
   const users = useSelector((state) => state?.recipe?.users);
   const email = useSelector((state) => state?.recipe?.email);
 
@@ -14,6 +15,7 @@ const AddNewRecipe = () => {
 
   function handleAddMeal() {
     let recipe = {
+      id: uuid.v4(),
       title,
       description: desc,
     };
@@ -26,6 +28,7 @@ const AddNewRecipe = () => {
 
     AsyncStorage.setItem("users", JSON.stringify(alteredUsers));
     store.dispatch(setUsers(alteredUsers));
+    navigation.navigate("Meals");
   }
 
   return (

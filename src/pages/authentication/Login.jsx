@@ -56,7 +56,7 @@ export default function Login({ navigation }) {
       if (user) {
         AsyncStorage.setItem("user", JSON.stringify(user)).then(() => {
           store.dispatch(setIsLoggedIn(true));
-          navigation.navigate("Home");
+          navigation.navigate("Categories");
         });
       } else {
         alert("User not found");
