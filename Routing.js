@@ -7,10 +7,12 @@ import { store } from "./src/redux/store";
 import { setIsLoggedIn } from "./src/redux/slices/RecipeSlice";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Icon } from "native-base";
-import HomePage from "./src/pages/HomePage";
+import Categories from "./src/pages/Categories";
 import Login from "./src/pages/authentication/Login";
 import Signup from "./src/pages/authentication/SignUp";
 import AddNewRecipe from "./src/pages/AddNewRecipe";
+import Details from "./src/pages/Details";
+import MealCard from "./src/pages/MealCard";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +23,7 @@ const Routing = () => {
       <NavigationContainer>
         {isLoggedIn ? (
           <Stack.Navigator
-            initialRouteName="Home"
+            initialRouteName="Categories"
             screenOptions={{
               headerTitleAlign: "center",
               headerRight: () => (
@@ -38,8 +40,10 @@ const Routing = () => {
             }}
           >
             <>
-              <Stack.Screen name="Home" component={HomePage} />
+              <Stack.Screen name="Categories" component={Categories} />
               <Stack.Screen name="AddRecipe" component={AddNewRecipe} />
+              <Stack.Screen name="Details" component={Details} />
+              <Stack.Screen name="Meals" component={MealCard} />
             </>
           </Stack.Navigator>
         ) : (
